@@ -1,30 +1,31 @@
-import { Avatar, IconButton } from "@material-ui/core";
+import { Avatar, IconButton } from '@material-ui/core';
 import {
 	AttachFile,
 	InsertEmoticon,
 	Mic,
 	MoreVert,
 	SearchOutlined,
-} from "@material-ui/icons";
-import React, { useState } from "react";
-import axios from "../../axios";
+} from '@material-ui/icons';
+import React, { useState } from 'react';
+import axios from '../../axios';
 
-import "./Chat.css";
+import './Chat.css';
 
 function ChatComponent({ messages }) {
-	const [input, setInput] = useState("");
+	const [input, setInput] = useState('');
+	const time = new Date();
 
 	const sendMessage = async (e) => {
 		e.preventDefault();
 
-		await axios.post("/messages/new", {
+		await axios.post('/messages/new', {
 			message: input,
-			name: "Raghu",
-			timestamp: "Just Now",
+			name: 'Raghunandan',
+			timestamp: time.getHours() + ':' + time.getMinutes(),
 			received: true,
 		});
 
-		setInput("");
+		setInput('');
 	};
 
 	return (
@@ -52,9 +53,10 @@ function ChatComponent({ messages }) {
 
 			<div className="chat__body">
 				{messages.map((message, index) => (
-					<p key={index}
+					<p
+						key={index}
 						className={`chat__message ${
-							message.received && "chat__reciever"
+							message.received && 'chat__reciever'
 						}`}>
 						<span className="chat__name">{message.name}</span>
 						{message.message}

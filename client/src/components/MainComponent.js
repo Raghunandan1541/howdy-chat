@@ -21,9 +21,12 @@ function MainComponent() {
 	}, []);
 
 	useEffect(() => {
-		const pusher = new Pusher(process.env.PUSHER_KEY, {
-			cluster: 'eu',
-		});
+		const pusher = new Pusher(
+			process.env.PUSHER_KEY || '974af4a40959c1ae3bb2',
+			{
+				cluster: 'eu',
+			}
+		);
 
 		const channel = pusher.subscribe('messages');
 		channel.bind('inserted', (newMessage) => {
@@ -37,9 +40,12 @@ function MainComponent() {
 	}, [messages]);
 
 	useEffect(() => {
-		const pusher = new Pusher(process.env.PUSHER_KEY, {
-			cluster: 'eu',
-		});
+		const pusher = new Pusher(
+			process.env.PUSHER_KEY || '974af4a40959c1ae3bb2',
+			{
+				cluster: 'eu',
+			}
+		);
 
 		const channel = pusher.subscribe('groups');
 		channel.bind('inserted', (newMessage) => {

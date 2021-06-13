@@ -1,6 +1,9 @@
 node_modules
 .env
 
+app/
+
+
+uploads/
+
 server1.js
-dbMessages.js
-groups.js
