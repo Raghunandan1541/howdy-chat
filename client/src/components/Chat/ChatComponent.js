@@ -8,12 +8,26 @@ import {
 } from '@material-ui/icons';
 import React, { useState } from 'react';
 import axios from '../../axios';
+import Picker, { SKIN_TONE_NEUTRAL } from 'emoji-picker-react';
 
 import './Chat.css';
 
 function ChatComponent({ messages }) {
 	const [input, setInput] = useState('');
+	const [chosenEmoji, setChosenEmoji] = useState(null);
+	const [open, setopen] = useState(false);
+
 	const time = new Date();
+
+	const handleToggle = async (event, emojiObject) => {
+		setopen(true);
+	};
+	const handleDisplay = async (event, emojiObject) => {
+		setChosenEmoji(emojiObject.emoji);
+
+		setInput(input + chosenEmoji);
+		setopen(false);
+	};
 
 	const sendMessage = async (e) => {
 		e.preventDefault();
@@ -26,6 +40,7 @@ function ChatComponent({ messages }) {
 		});
 
 		setInput('');
+		setChosenEmoji('');
 	};
 
 	return (
@@ -34,7 +49,7 @@ function ChatComponent({ messages }) {
 				<Avatar />
 
 				<div className="chat__headerInfo">
-					<h3>Room name</h3>
+					<h3>GR - 6</h3>
 					<p>Let's listen at...</p>
 				</div>
 
@@ -68,7 +83,19 @@ function ChatComponent({ messages }) {
 			</div>
 
 			<div className="chat__footer">
-				<InsertEmoticon />
+				<InsertEmoticon onClick={handleToggle} />
+
+				<div
+					style={{
+						display: open ? 'block' : 'none',
+						position: 'absolute',
+						bottom: '5rem',
+					}}>
+					<Picker
+						onEmojiClick={handleDisplay}
+						skinTone={SKIN_TONE_NEUTRAL}
+					/>
+				</div>
 				<form>
 					<input
 						value={input}
