@@ -1,5 +1,16 @@
 # howdy-chat
 
+### Create .env file
+ 
+###### PUSHER_APP_ID= id
+###### PUSHER_KEY= key
+###### PUSHER_SECRET=secret
+###### PUSHER_CLUSTER=eu
+
+###### MONGO_URL = URL
+
+###### PORT = 4000
+
 ### Installation
 
 1. Use `npm install` in root directory.
